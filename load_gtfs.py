@@ -18,7 +18,7 @@ def main():
     conn = MySQLdb.connect (host=settings.MYSQL_HOST, user=settings.MYSQL_USER, passwd=settings.MYSQL_PASSWORD, db=settings.MYSQL_DATABASE)
     cursor = conn.cursor()
     
-    TABLES = ['agency', 'calendar', 'calendar_dates', 'routes', 'stops', 'stop_times', 'trips']
+    TABLES = ['trips']
 
     for table in TABLES:
         print 'processing %s' % table
@@ -36,6 +36,10 @@ def main():
             insert_sql = "INSERT INTO %s (%s) VALUES (%s);" % (table, ','.join(columns), ','.join(insert_row))        
             cursor.execute(insert_sql)
 
+	cache_sql = "UPDATE stop_times SET stop_times.departure_time_seconds = 3600*CAST(SUBSTRING(stop_times.departure_time FROM 1 FOR 2) AS UNSIGNED) + 60*CAST(SUBSTRING(stop_times.departure_time FROM 4 FOR 2) AS UNSIGNED) + CAST(SUBSTRING(stop_times.departure_time FROM 7 FOR 2) AS UNSIGNED)"   
+    cursor.execute(cache_sql)
+    cache_sql = "UPDATE stop_times SET stop_times.arrival_time_seconds = 3600*CAST(SUBSTRING(stop_times.arrival_time FROM 1 FOR 2) AS UNSIGNED) + 60*CAST(SUBSTRING(stop_times.arrival_time FROM 4 FOR 2) AS UNSIGNED) + CAST(SUBSTRING(stop_times.arrival_time FROM 7 FOR 2) AS UNSIGNED)"   
+    cursor.execute(cache_sql)
     cursor.close ()
     conn.close ()
 
