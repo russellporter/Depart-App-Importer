@@ -88,8 +88,9 @@ def main():
     print 'processing calendar_dates'
     calendar_dates(conn)
     
-    print 'processing stop_times'
-    stop_times(conn)
+    # Now handled during the sql import
+    #print 'processing stop_times'
+    #stop_times(conn)
     
     conn.close()
 
