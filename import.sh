@@ -5,7 +5,10 @@ export PATH=$PATH:/opt/local/lib/mysql5/bin
 
 # Update mysql settings for python
 rm settings.py
-echo "MYSQL_USER = '$MYSQL_USER'\nMYSQL_PASSWORD = '$MYSQL_PASSWORD'\nMYSQL_DATABASE = '$MYSQL_DATABASE'\nMYSQL_HOST = '$MYSQL_HOST'" > settings.py
+echo "MYSQL_USER = '$MYSQL_USER'
+MYSQL_PASSWORD = '$MYSQL_PASSWORD'
+MYSQL_DATABASE = '$MYSQL_DATABASE'
+MYSQL_HOST = '$MYSQL_HOST'" > settings.py
 
 mkdir gtfs
 rm -Rf gtfs/*
