@@ -166,6 +166,6 @@ UPDATE stop_times SET arrival_time_seconds = (3600*CAST(SUBSTRING(arrival_time,1
 
 LOAD DATA LOCAL INFILE 'stops.txt' INTO TABLE stops FIELDS TERMINATED BY ',' IGNORE 1 LINES (stop_id,stop_code,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,location_type,parent_station);
 
-LOAD DATA LOCAL INFILE 'trips.txt' INTO TABLE trips FIELDS TERMINATED BY ',' IGNORE 1 LINES ();
+LOAD DATA LOCAL INFILE 'trips.txt' INTO TABLE trips FIELDS TERMINATED BY ',' IGNORE 1 LINES (route_id,service_id,trip_id,trip_headsign,direction_id,block_id,shape_id);
 
 LOAD DATA LOCAL INFILE 'shapes.txt' INTO TABLE shapes FIELDS TERMINATED BY ',' IGNORE 1 LINES (shape_id,shape_pt_lat,shape_pt_lon,shape_pt_sequence,shape_dist_traveled);
